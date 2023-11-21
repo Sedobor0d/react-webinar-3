@@ -55,7 +55,7 @@ class Store {
     const code = this.getGenerateId();
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: code, title: 'Новая запись' }]
+      list: [...this.state.list, { code: code, title: 'Новая запись', countSelect: 0 }]
     })
   };
 
@@ -79,6 +79,7 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
+          if (item.selected !== true) item.countSelect += 1
           item.selected = !item.selected;
         } else {
           item.selected = false;
