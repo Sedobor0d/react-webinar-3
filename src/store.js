@@ -5,6 +5,7 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
+    this.lastCode = initState.list[initState.list.length - 1].code // ID Последнего элемента
   }
 
   /**
@@ -39,12 +40,22 @@ class Store {
   }
 
   /**
+   * Создать и вернуть новый id
+   */
+
+  getGenerateId() {
+    const code = this.lastCode + 1
+    this.lastCode = code
+    return code
+  }
+  /**
    * Добавление новой записи
    */
   addItem() {
+    const code = this.getGenerateId();
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }]
+      list: [...this.state.list, { code: code, title: 'Новая запись' }]
     })
   };
 
