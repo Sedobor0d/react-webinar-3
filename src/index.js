@@ -8,7 +8,7 @@ const store = new Store({
   list: [
     { code: 1, title: 'Название элемента', countSelect: 0 },
     { code: 2, title: 'Некий объект', countSelect: 0 },
-    { code: 3, title: 'Заголовок', countSelect: 5 },
+    { code: 3, title: 'Заголовок', countSelect: 0 },
     { code: 4, title: 'Очень длинное название элемента из семи слов', countSelect: 0 },
     { code: 5, title: 'Запись', countSelect: 0 },
     { code: 6, title: 'Шестая запись', countSelect: 0 },
