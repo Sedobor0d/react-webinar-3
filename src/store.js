@@ -5,7 +5,22 @@ class Store {
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
-    this.lastCode = initState.list[initState.list.length - 1].code // ID Последнего элемента
+    this.сode = this.getInitBaseCode(initState.list)
+  }
+
+  /** 
+   * Получить самый большой code(id)
+   * @param {Array<Object>} initState - Массив объектов, где каждый объект имеет свойство "code" (id).
+   * @returns {number} largeCode - Число с самым большим значением code (id).
+   */
+  getInitBaseCode(initState) {
+    let largeCode = 0
+    for (const iterator of initState) {
+      let codeValue = Object.values(iterator)[0]
+
+      if (codeValue > largeCode) largeCode = codeValue
+    }
+    return largeCode
   }
 
   /**
@@ -40,22 +55,22 @@ class Store {
   }
 
   /**
-   * Создать и вернуть новый id
+   * Создать и вернуть новый код (id)
+   * @returns {number} newCode - Новый идентификатор.
    */
-
   getGenerateId() {
-    const code = this.lastCode + 1
-    this.lastCode = code
-    return code
+    const newCode = this.сode + 1
+    this.сode = newCode
+    return newCode
   }
   /**
    * Добавление новой записи
    */
   addItem() {
-    const code = this.getGenerateId();
+    const newCode = this.getGenerateId();
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: code, title: 'Новая запись', countSelect: 0 }]
+      list: [...this.state.list, { code: newCode, title: 'Новая запись', countSelect: 0 }]
     })
   };
 
