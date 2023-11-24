@@ -1,5 +1,5 @@
 import React from 'react';
-import { createElement } from './utils.js';
+import { getTextCountSelected } from './utils.js';
 import './styles.css';
 
 /**
@@ -10,23 +10,6 @@ import './styles.css';
 function App({ store }) {
 
   const list = store.getState().list;
-
-  const getTextHowManyTimes = (number) => {
-    let lastTwoDigits = number % 100;
-    if (lastTwoDigits >= 5 && lastTwoDigits <= 21) return "раз";
-
-    let lastDigit = number % 10;
-    if (lastDigit >= 2 && lastDigit <= 4) return "раза";
-    else return "раз";
-  }
-
-  const getTextCountSelected = (selected, countSelect) => {
-    if (!selected) return ''
-
-    const text = getTextHowManyTimes(countSelect)
-
-    return ` | Выделяли ${countSelect} ${text}`
-  }
 
   return (
     <div className='App'>
