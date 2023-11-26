@@ -1,3 +1,5 @@
+import { templateNumberRu, endingNumber } from './helpers/workingWithNumbers/patternsPluralNumbers'
+
 const propNames = new Set(['id', 'className', 'textContent', 'onclick']);
 
 /**
@@ -28,20 +30,6 @@ export function createElement(name, props = {}, ...children) {
 }
 
 /**
- * Возвращает правильную форму слова "раз" в зависимости от числа.
- * @param number {number} Число
- * @returns {string} Форма слова "раз(а)"
- */
-export const getTextHowManyTimes = (number) => {
-  let lastTwoDigits = number % 100;
-  if (lastTwoDigits >= 5 && lastTwoDigits <= 21) return "раз";
-
-  let lastDigit = number % 10;
-  if (lastDigit >= 2 && lastDigit <= 4) return "раза";
-  else return "раз";
-}
-
-/**
  * Возвращает текст с информацией о совершенных выделений и правильной форме слова "раз".
  * @param selected {boolean} Флаг выбора, выделен элемент или нет
  * @param countSelect {number} Количество совершенных выделений
@@ -50,7 +38,7 @@ export const getTextHowManyTimes = (number) => {
 export const getTextCountSelected = (selected = false, countSelect = 0) => {
   if (!selected) return ''
 
-  const text = getTextHowManyTimes(countSelect)
+  const text = endingNumber(countSelect, templateNumberRu('раз', 'раза', 'раз'))
 
   return ` | Выделяли ${countSelect} ${text}`
 }
