@@ -1,4 +1,4 @@
-import {generateCode} from "./utils";
+import { generateCode } from "./utils";
 
 /**
  * Хранилище состояния приложения
@@ -41,12 +41,27 @@ class Store {
   }
 
   /**
-   * Добавление новой записи
+   * Добавление товара
    */
-  addItem() {
+  addProduct(code) {
+    if (!code) return
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: generateCode(), title: 'Новая запись'}]
+      list: this.state.list.map(item => {
+
+        console.log(item)
+        console.log('item')
+        console.log(code)
+        if (item.code === code) {
+          this.product = product + 1,
+            this.allSum = allSum + item.price
+
+          return {
+            ...item,
+            count: count + 1
+          };
+        }
+      })
     })
   };
 
@@ -79,7 +94,7 @@ class Store {
           };
         }
         // Сброс выделения если выделена
-        return item.selected ? {...item, selected: false} : item;
+        return item.selected ? { ...item, selected: false } : item;
       })
     })
   }

@@ -1,21 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
-import './style.css';
 
-function Controls({onAdd}) {
+import './style.css';
+import MyButton from '../ui/button';
+import Money from '../ui/money';
+import { plural } from '../../utils'
+import { ProductsContext } from "../../context/products-context";
+
+function Controls() {
+
+  const { countProduct, totalAmount, setIsOpenModal } = useContext(ProductsContext);
+
+  const countItem = () => {
+    return (countProduct > 0 ?
+      `
+      ${countProduct} 
+      ${plural(countProduct, { one: 'товар', few: 'товара', many: 'товаров' })}
+      ${` / `}
+      `:
+      'пусто'
+    )
+  }
+
   return (
     <div className='Controls'>
-      <button onClick={() => onAdd()}>Добавить</button>
+      В коризне:
+      <p className='Controls__count'>
+        {countItem()}
+        {countProduct > 0 ? <Money >{totalAmount}</Money> : null}
+      </p>
+      <MyButton onClick={() => setIsOpenModal(true)}>Перейти</MyButton>
     </div>
   )
 }
 
 Controls.propTypes = {
-  onAdd: PropTypes.func
+  onOpen: PropTypes.func
 };
 
 Controls.defaultProps = {
-  onAdd: () => {}
+  onOpen: () => { }
 }
 
 export default React.memo(Controls);

@@ -18,6 +18,21 @@
   padding: 20px 10px;
 }
 
+.Item-price {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-right: 14px;
+}
+
+.Item-count {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-left: 62px;
+}
+
 .Item-actions {
   display: flex;
   justify-content: flex-end;
