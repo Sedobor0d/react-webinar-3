@@ -9,7 +9,9 @@ import { ProductsContext } from "../../context/products-context";
 
 function Controls() {
 
-  const { countProduct, totalAmount, setIsOpenModal } = useContext(ProductsContext);
+  const { addedProduct, totalAmount, setIsOpenModal } = useContext(ProductsContext);
+
+  let countProduct = addedProduct.length;
 
   const countItem = () => {
     return (countProduct > 0 ?
