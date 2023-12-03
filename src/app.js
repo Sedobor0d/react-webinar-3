@@ -5,54 +5,38 @@ import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
 import { ProductsContext } from './context/products-context';
-import { generateCode } from "./utils";
 import Basket from './components/basket';
 
-function App() {
-
-  const [store, setStore] = useState({
-    list: [
-      { code: generateCode(), title: 'Название товара', price: 100.0 },
-      { code: generateCode(), title: 'Книга про React', price: 770 },
-      { code: generateCode(), title: 'Конфета', price: 33, count: 0 },
-      { code: generateCode(), title: 'Трактор', price: 7955320 },
-      { code: generateCode(), title: 'Телефон iPhone XIXV', price: 120000 },
-      { code: generateCode(), title: 'Карандаши цветные', price: 111 },
-      { code: generateCode(), title: 'Товар сюрприз', price: 0 },
-    ]
-  })
-  const [addedProduct, setAddedProduct] = useState([])
+function App({ store }) {
   const [totalAmount, setTotalAmount] = useState(0) //Общая стоиость товаров
   const [isOpenModal, setIsOpenModal] = useState(false) //Модальное окно
 
-  const callbacks = {
-    handleAddProduct: useCallback((product) => {
-      setTotalAmount(prev => prev + product.price)
+  const list = store.getState().list;
+  const addedProduct = store.getAddedProduct();
 
-      setAddedProduct(prevStore => {
-        const findProduct = prevStore.find((item) => item.code === product.code);
+  const handleAddProduct = useCallback((product) => {
+    setTotalAmount(prev => prev + product.price)
+    store.addProduct(product)
 
-        if (findProduct) {
-          const updatedProduct = { ...findProduct, count: findProduct.count + 1 };
-          return prevStore.map((item) => (item.code === product.code ? updatedProduct : item))
-        }
-        const newProduct = { ...product, count: 1 };
-        return [...prevStore, newProduct]
-      })
-    }, [])
-  }
+  }, [store])
+
+  const handleDeleteProduct = useCallback((product) => {
+    setTotalAmount(prev => prev - (product.price * product.count))
+    store.deleteProduct(product.code)
+
+  }, [store])
 
   return (
     <ProductsContext.Provider value={{
-      store, setStore,
-      addedProduct, setAddedProduct,
+      addedProduct,
+      handleAddProduct, handleDeleteProduct,
       totalAmount, setTotalAmount,
       isOpenModal, setIsOpenModal
     }}>
       <PageLayout>
         <Head title='Магазин' />
-        <Controls />
-        <List list={store.list} onClickBtn={callbacks.handleAddProduct} titleBtn={'Добавить'} />
+        <Controls countProduct={addedProduct.length} />
+        <List list={list} onClickBtn={handleAddProduct} titleBtn={'Добавить'} />
         {isOpenModal && <Basket />}
       </PageLayout>
     </ProductsContext.Provider>

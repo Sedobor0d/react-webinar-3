@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useContext } from "react";
 
 import './style.css';
 import { ProductsContext } from "../../context/products-context";
@@ -7,16 +7,15 @@ import List from "../list";
 import TotalAmount from "../total-amount";
 
 const Basket = () => {
-   const { addedProduct, setAddedProduct, setIsOpenModal, totalAmount, setTotalAmount } = useContext(ProductsContext);
+   const { addedProduct, handleDeleteProduct, setIsOpenModal, totalAmount } = useContext(ProductsContext);
 
    const callbacks = {
-      handleDeleteProduct: useCallback((product) => {
-         setTotalAmount(prev => prev - (product.price * product.count))
-
-         setAddedProduct(prev => {
-            return prev.filter(item => item.code !== product.code)
-         })
-      }, [])
+      onClose: () => {
+         setIsOpenModal(false)
+      },
+      onDelete: (product) => {
+         handleDeleteProduct(product)
+      }
    }
 
    return (
@@ -24,11 +23,11 @@ const Basket = () => {
          <div className="Basket-container">
             <div className="Basket-header">
                <Head title='Корзина' />
-               <button className="Basket-btn" onClick={() => setIsOpenModal(false)}>Закрыть</button>
+               <button className="Basket-btn" onClick={callbacks.onClose}>Закрыть</button>
             </div>
             {addedProduct.length > 0 ?
                <>
-                  <List list={addedProduct} onClickBtn={callbacks.handleDeleteProduct} titleBtn={'Удалить'} />
+                  <List list={addedProduct} onClickBtn={callbacks.onDelete} titleBtn={'Удалить'} />
                   <TotalAmount totalAmount={totalAmount} />
                </> :
                <div className="Basket-empty">

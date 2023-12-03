@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from "prop-types";
 
 const Money = ({ children, ...props }) => {
-   const formattedAmount = useMemo(() => children.toLocaleString('ru-RU', { maximumFractionDigits: 0 }), []);
+   const formattedAmount = children.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
 
    return (
       <span {...props}>
