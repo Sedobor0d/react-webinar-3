@@ -1,13 +1,17 @@
 import React from "react";
-
-import styles from './style.module.css';
+import PropTypes from "prop-types";
+import './style.css';
 
 const MyButton = ({ children, ...props }) => {
    return (
-      <button {...props} className={styles.MyButton}>
+      <button {...props} className="MyButton">
          {children}
       </button>
    );
 };
+
+MyButton.propTypes = {
+   children: PropTypes.node.isRequired,
+}
 
 export default MyButton;

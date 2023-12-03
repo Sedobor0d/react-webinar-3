@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 
 import './style.css';
 import { ProductsContext } from "../../context/products-context";
 import Head from "../head";
 import List from "../list";
-import Money from '../ui/money';
+import TotalAmount from "../total-amount";
 
 const Basket = () => {
    const { addedProduct, setAddedProduct, setIsOpenModal, totalAmount, setTotalAmount } = useContext(ProductsContext);
@@ -25,15 +24,17 @@ const Basket = () => {
          <div className="Basket-container">
             <div className="Basket-header">
                <Head title='Корзина' />
-               <button className="Basket-header__btn" onClick={() => setIsOpenModal(false)}>Закрыть</button>
+               <button className="Basket-btn" onClick={() => setIsOpenModal(false)}>Закрыть</button>
             </div>
-            <List list={addedProduct} onClickBtn={callbacks.handleDeleteProduct} titleBtn={'Удалить'} />
-            <div className="Basket-total">
-               <div className="Basket-total-container">
-                  <span className="Basket__sum">Итого</span>
-                  <Money>{totalAmount}</Money>
+            {addedProduct.length > 0 ?
+               <>
+                  <List list={addedProduct} onClickBtn={callbacks.handleDeleteProduct} titleBtn={'Удалить'} />
+                  <TotalAmount totalAmount={totalAmount} />
+               </> :
+               <div className="Basket-empty">
+                  <h2>Корзина пуста</h2>
                </div>
-            </div>
+            }
          </div>
       </div>
    );

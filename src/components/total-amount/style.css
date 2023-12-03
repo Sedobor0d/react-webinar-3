@@ -1,0 +1,15 @@
+.TotalAmount {
+   font-weight: bold;
+   font-size: 18px;
+   height: 130px;
+}
+
+.TotalAmount-container {
+   display: flex;
+   justify-content: end;
+   padding: 20px 120px;
+}
+
+.TotalAmount-sum {
+   margin-right: 53px;
+}

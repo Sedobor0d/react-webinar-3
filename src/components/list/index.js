@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import Item from "../item";
 import './style.css';
-
 
 function List({ list, onClickBtn, titleBtn }) {
 
@@ -15,6 +14,21 @@ function List({ list, onClickBtn, titleBtn }) {
       )}
     </div>
   )
+}
+
+List.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      code: PropTypes.number.isRequired
+    })
+  ).isRequired,
+  onClickBtn: PropTypes.func.isRequired,
+  titleBtn: PropTypes.string.isRequired,
+};
+
+List.defaultProps = {
+  onClickBtn: () => {
+  },
 }
 
 export default React.memo(List);

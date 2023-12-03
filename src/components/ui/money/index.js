@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const Money = ({ children, ...props }) => {
    const formattedAmount = children.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
@@ -8,6 +9,10 @@ const Money = ({ children, ...props }) => {
          {formattedAmount} ₽
       </span>
    );
+};
+
+Money.propTypes = {
+   children: PropTypes.number.isRequired,
 };
 
 export default Money;

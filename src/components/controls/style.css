@@ -1,11 +1,18 @@
-.Controls {
+.Controls {}
+
+.Controls-container {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding: 20px;
 }
 
-.Controls__count {
+.Controls-count {
   font-weight: bold;
   margin: 0 20px 0 15px;
+}
+
+.Controls-btn {
+  font-size: 13px;
+  width: 80px;
 }
