@@ -1,15 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import './style.css';
-import { ProductsContext } from "../../context/products-context";
 import Money from '../ui/money';
 import MyButton from '../ui/button';
 
 function Item({ item, onClickBtn, titleBtn }) {
-
-  const { isOpenModal } = useContext(ProductsContext);
-
   return (
     <div className='Item'>
       <div className='Item-code'>
@@ -22,7 +18,7 @@ function Item({ item, onClickBtn, titleBtn }) {
 
       <div className='Item-price'>
         <Money>{item.price}</Money>
-        {isOpenModal &&
+        {item.count > 0 &&
           <div className='Item-count'>
             {item.count} шт.
           </div>}

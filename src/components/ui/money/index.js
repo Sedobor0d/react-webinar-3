@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from "prop-types";
 
 const Money = ({ children, ...props }) => {
-   const formattedAmount = children.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+   const formattedAmount = useMemo(() => children.toLocaleString('ru-RU', { maximumFractionDigits: 0 }), []);
 
    return (
       <span {...props}>
@@ -15,4 +15,4 @@ Money.propTypes = {
    children: PropTypes.number.isRequired,
 };
 
-export default Money;
+export default React.memo(Money);

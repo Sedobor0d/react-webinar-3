@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import List from "./components/list";
 import Controls from "./components/controls";
@@ -26,7 +26,7 @@ function App() {
   const [isOpenModal, setIsOpenModal] = useState(false) //Модальное окно
 
   const callbacks = {
-    handleAddProduct: (product) => {
+    handleAddProduct: useCallback((product) => {
       setTotalAmount(prev => prev + product.price)
 
       setAddedProduct(prevStore => {
@@ -39,7 +39,7 @@ function App() {
         const newProduct = { ...product, count: 1 };
         return [...prevStore, newProduct]
       })
-    }
+    }, [])
   }
 
   return (

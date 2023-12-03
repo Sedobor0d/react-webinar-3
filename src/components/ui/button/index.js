@@ -14,4 +14,4 @@ MyButton.propTypes = {
    children: PropTypes.node.isRequired,
 }
 
-export default MyButton;
+export default React.memo(MyButton);

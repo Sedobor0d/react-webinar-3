@@ -19,4 +19,4 @@ TotalAmount.propTypes = {
    totalAmount: PropTypes.number.isRequired
 };
 
-export default TotalAmount;
+export default React.memo(TotalAmount);

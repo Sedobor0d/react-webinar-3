@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 
 import './style.css';
 import { ProductsContext } from "../../context/products-context";
@@ -10,13 +10,13 @@ const Basket = () => {
    const { addedProduct, setAddedProduct, setIsOpenModal, totalAmount, setTotalAmount } = useContext(ProductsContext);
 
    const callbacks = {
-      handleDeleteProduct: (product) => {
+      handleDeleteProduct: useCallback((product) => {
          setTotalAmount(prev => prev - (product.price * product.count))
 
          setAddedProduct(prev => {
             return prev.filter(item => item.code !== product.code)
          })
-      }
+      }, [])
    }
 
    return (
@@ -40,4 +40,4 @@ const Basket = () => {
    );
 };
 
-export default Basket;
+export default React.memo(Basket);
