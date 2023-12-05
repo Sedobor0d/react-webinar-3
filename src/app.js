@@ -4,42 +4,46 @@ import List from "./components/list";
 import Controls from "./components/controls";
 import Head from "./components/head";
 import PageLayout from "./components/page-layout";
-import { ProductsContext } from './context/products-context';
 import Basket from './components/basket';
 
 function App({ store }) {
-  const [totalAmount, setTotalAmount] = useState(0) //Общая стоиость товаров
   const [isOpenModal, setIsOpenModal] = useState(false) //Модальное окно
 
   const list = store.getState().list;
-  const addedProduct = store.getAddedProduct();
+  const addedProduct = store.getState().addedProduct;
+  const totalAmount = store.getState().totalAmount;
 
-  const handleAddProduct = useCallback((product) => {
-    setTotalAmount(prev => prev + product.price)
-    store.addProduct(product)
+  const callbacks = {
+    handleAddProduct: useCallback((product) => {
+      store.addProduct(product)
+    }, [store]),
 
-  }, [store])
-
-  const handleDeleteProduct = useCallback((product) => {
-    setTotalAmount(prev => prev - (product.price * product.count))
-    store.deleteProduct(product.code)
-
-  }, [store])
+    handleDeleteProduct: useCallback((product) => {
+      store.deleteProduct(product)
+    }, [store])
+  }
 
   return (
-    <ProductsContext.Provider value={{
-      addedProduct,
-      handleAddProduct, handleDeleteProduct,
-      totalAmount, setTotalAmount,
-      isOpenModal, setIsOpenModal
-    }}>
-      <PageLayout>
-        <Head title='Магазин' />
-        <Controls countProduct={addedProduct.length} />
-        <List list={list} onClickBtn={handleAddProduct} titleBtn={'Добавить'} />
-        {isOpenModal && <Basket />}
-      </PageLayout>
-    </ProductsContext.Provider>
+    <PageLayout>
+      <Head title='Магазин' />
+      <Controls
+        setIsOpenModal={setIsOpenModal}
+        countProduct={addedProduct.length}
+        totalAmount={totalAmount}
+      />
+      <List
+        list={list}
+        onClickBtn={callbacks.handleAddProduct}
+        titleBtn={'Добавить'}
+      />
+      {isOpenModal &&
+        <Basket
+          setIsOpenModal={setIsOpenModal}
+          addedProduct={addedProduct}
+          deleteProduct={callbacks.handleDeleteProduct}
+          totalAmount={totalAmount}
+        />}
+    </PageLayout>
   );
 }
 

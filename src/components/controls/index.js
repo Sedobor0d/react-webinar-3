@@ -1,14 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import './style.css';
 import Money from '../ui/money';
 import { plural } from '../../utils'
-import { ProductsContext } from "../../context/products-context";
 
-function Controls({ countProduct }) {
-
-  const { totalAmount, setIsOpenModal } = useContext(ProductsContext);
+function Controls({ setIsOpenModal, countProduct, totalAmount }) {
 
   const countText = countProduct > 0 ?
     `${countProduct} ${plural(countProduct,

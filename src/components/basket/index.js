@@ -1,26 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import './style.css';
-import { ProductsContext } from "../../context/products-context";
 import Head from "../head";
 import List from "../list";
 import TotalAmount from "../total-amount";
+import Modal from "../ui/modal";
 
-const Basket = () => {
-   const { addedProduct, handleDeleteProduct, setIsOpenModal, totalAmount } = useContext(ProductsContext);
+const Basket = ({ setIsOpenModal, addedProduct, deleteProduct, totalAmount }) => {
 
    const callbacks = {
       onClose: () => {
          setIsOpenModal(false)
       },
       onDelete: (product) => {
-         handleDeleteProduct(product)
+         deleteProduct(product)
       }
    }
 
    return (
-      <div className="Basket">
-         <div className="Basket-container">
+      <Modal>
+         <div className="Basket">
             <div className="Basket-header">
                <Head title='Корзина' />
                <button className="Basket-btn" onClick={callbacks.onClose}>Закрыть</button>
@@ -35,7 +34,7 @@ const Basket = () => {
                </div>
             }
          </div>
-      </div>
+      </Modal>
    );
 };
 

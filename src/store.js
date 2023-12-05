@@ -1,13 +1,12 @@
-import { generateCode } from "./utils";
-
 /**
  * Хранилище состояния приложения
  */
 class Store {
    constructor(initState = {}) {
       this.state = initState;
+      this.state.addedProduct = [] //Выбранные товары в корзине
+      this.state.totalAmount = 0 //Общая стоимость товаров
       this.listeners = []; // Слушатели изменений состояния
-      this.addedProduct = [] //Выбранные товары в корзине
    }
 
    /**
@@ -32,18 +31,11 @@ class Store {
    }
 
    /**
-   * @returns {Array<Object>} - Массив выбранных товаров, в коризне
-   */
-   getAddedProduct() {
-      return this.addedProduct;
-   }
-
-   /**
    * Установка состояния
    * @param newState {Array<Object>}
    */
-   setAddedProduct(newState) {
-      this.addedProduct = newState;
+   setState(newState) {
+      this.state = newState;
 
       // Вызываем всех слушателей
       for (const listener of this.listeners) listener();
@@ -54,25 +46,36 @@ class Store {
     * @param {Object} 
     */
    addProduct(product) {
-      const findProduct = this.addedProduct.find((item) => item.code === product.code);
-      const store = this.addedProduct
+      const store = this.state.addedProduct
+      const findProduct = store.find((item) => item.code === product.code);
+
+      let updatedArray;
 
       if (findProduct) {
          const updatedProduct = { ...findProduct, count: findProduct.count + 1 };
-         this.setAddedProduct(store.map((item) => (item.code === product.code ? updatedProduct : item)))
+         updatedArray = store.map((item) => (item.code === product.code ? updatedProduct : item))
       } else {
          const newProduct = { ...product, count: 1 };
-         this.setAddedProduct([...store, newProduct])
+         updatedArray = [...store, newProduct]
       }
+      this.setState({
+         ...this.state,
+         totalAmount: this.state.totalAmount + product.price,
+         addedProduct: updatedArray
+      })
    };
 
    /**
     * Удаление товара из коризны по коду
     * @param {number}
     */
-   deleteProduct(code) {
-      const newArr = this.addedProduct.filter(item => item.code !== code)
-      this.setAddedProduct(newArr)
+   deleteProduct(product) {
+      const updatedArray = this.state.addedProduct.filter(item => item.code !== product.code)
+      this.setState({
+         ...this.state,
+         totalAmount: this.state.totalAmount - (product.price * product.count),
+         addedProduct: updatedArray
+      })
    };
 }
 
