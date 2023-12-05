@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 import './style.css';
 import Head from "../head";
@@ -36,6 +37,13 @@ const Basket = ({ setIsOpenModal, addedProduct, deleteProduct, totalAmount }) =>
          </div>
       </Modal>
    );
+};
+
+Basket.propTypes = {
+   addedProduct: PropTypes.array.isRequired,
+   deleteProduct: PropTypes.func.isRequired,
+   setIsOpenModal: PropTypes.func.isRequired,
+   totalAmount: PropTypes.number.isRequired,
 };
 
 export default React.memo(Basket);

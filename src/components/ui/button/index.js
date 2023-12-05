@@ -11,7 +11,7 @@ const MyButton = ({ children, ...props }) => {
 };
 
 MyButton.propTypes = {
-   children: PropTypes.node.isRequired,
+   children: PropTypes.node,
 }
 
 export default React.memo(MyButton);

@@ -32,7 +32,9 @@ function Controls({ setIsOpenModal, countProduct, totalAmount }) {
 }
 
 Controls.propTypes = {
-  countProduct: PropTypes.number.isRequired
+  setIsOpenModal: PropTypes.func.isRequired,
+  countProduct: PropTypes.number.isRequired,
+  totalAmount: PropTypes.number.isRequired,
 };
 
 export default React.memo(Controls);
