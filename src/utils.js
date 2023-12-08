@@ -33,3 +33,12 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+export function getNumArrPages(currentPage, totalPages) {
+  if (currentPage <= 2) return [1, 2, 3]
+
+  if (currentPage >= totalPages - 1) return [totalPages - 2, totalPages - 1, totalPages];
+
+  return [currentPage - 1, currentPage, currentPage + 1];
+}
+

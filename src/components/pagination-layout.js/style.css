@@ -1,0 +1,7 @@
+.PaginationLayout {
+   list-style-type: none;
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   padding: 22px;
+}

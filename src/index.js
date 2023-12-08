@@ -1,7 +1,10 @@
-import {createRoot} from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './app';
 import Store from "./store";
-import {StoreContext} from "./store/context";
+import { StoreContext } from "./store/context";
+import './index.css';
+import './reset.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = new Store();
 
@@ -10,6 +13,8 @@ const root = createRoot(document.getElementById('root'));
 // Первый рендер приложения
 root.render(
   <StoreContext.Provider value={store}>
-    <App/>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StoreContext.Provider>
 );
