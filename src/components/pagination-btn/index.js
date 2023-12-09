@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import './style.css';
+
 
 const PaginationBtn = ({ children, isActive = false, setCurrentPage }) => {
    const callbacks = {
@@ -12,6 +14,12 @@ const PaginationBtn = ({ children, isActive = false, setCurrentPage }) => {
          {children}
       </li>
    );
+};
+
+PaginationBtn.propTypes = {
+   children: PropTypes.number.isRequired,
+   isActive: PropTypes.bool,
+   setCurrentPage: PropTypes.func.isRequired,
 };
 
 export default React.memo(PaginationBtn);

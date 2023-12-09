@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import './style.css';
 
 const PaginationLayout = ({ children }) => {
@@ -7,6 +8,10 @@ const PaginationLayout = ({ children }) => {
          {children}
       </ul>
    );
+};
+
+PaginationLayout.propTypes = {
+   children: PropTypes.node,
 };
 
 export default PaginationLayout;

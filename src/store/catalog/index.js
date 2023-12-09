@@ -1,4 +1,4 @@
-import { getAllProducts, getSpecificProducts } from "../../services";
+import { getProducts } from "../../services";
 import { getNumArrPages } from "../../utils";
 import StoreModule from "../module";
 
@@ -11,38 +11,34 @@ class Catalog extends StoreModule {
   initState() {
     return {
       list: [],
-      currentPage: 1,
+      currentPage: 0,
       totalPages: 0,
       numArrPages: []
     }
   }
 
-  async load() {
-    const data = await getAllProducts();
+  async load(pageNum = 1) {
+    if (pageNum === this.getState().currentPage) return;
+
+    const data = await getProducts(pageNum - 1);
     const totalPages = Math.ceil(data.count / 10);
 
     this.setState({
       ...this.getState(),
       list: data.items,
+      currentPage: pageNum,
       totalPages: totalPages,
-      numArrPages: getNumArrPages(0, totalPages)
+      numArrPages: getNumArrPages(pageNum, totalPages)
     }, 'Загружены товары из АПИ');
   }
 
-  async clickToPageNum(pageNumber) {
-    if (pageNumber === this.getState().currentPage) {
-      return;
+  async setOneProduct(product) {
+    if (this.getState().numArrPages.length === 0) {
+      this.setState({
+        ...this.getState(),
+        list: [product],
+      }, 'Добавлен товар при перезагрузки');
     }
-    const data = await getSpecificProducts(pageNumber - 1);
-    const totalPages = Math.ceil(data.count / 10);
-
-    this.setState({
-      ...this.getState(),
-      list: data.items,
-      currentPage: pageNumber,
-      totalPages: totalPages,
-      numArrPages: getNumArrPages(pageNumber, totalPages)
-    }, 'Загружены товары по номеру страницы из АПИ');
   }
 }
 export default Catalog;

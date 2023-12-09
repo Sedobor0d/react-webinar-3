@@ -9,12 +9,11 @@ import useSelector from "../../store/use-selector";
 import Pagination from '../pagination';
 
 function Main() {
-
   const store = useStore();
 
   useEffect(() => {
     store.actions.catalog.load();
-  }, []);
+  }, [store]);
 
   const select = useSelector(state => ({
     list: state.catalog.list,
@@ -43,7 +42,6 @@ function Main() {
       <List list={select.list} renderItem={renders.item} />
       <Pagination />
     </PageLayout>
-
   );
 }
 

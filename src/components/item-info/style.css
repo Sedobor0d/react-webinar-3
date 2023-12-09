@@ -1,0 +1,21 @@
+.ItemInfo button {
+   min-width: 75px;
+}
+
+.ItemInfo-content {
+   font-size: 18px;
+   padding: 20px 40px;
+}
+
+.ItemInfo-content p {
+   margin-bottom: 20px;
+}
+
+.ItemInfo-content p span {
+   font-weight: 700;
+}
+
+.ItemInfo-price {
+   font-weight: 700;
+   font-size: 24px;
+}

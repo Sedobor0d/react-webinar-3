@@ -17,7 +17,7 @@ const Pagination = () => {
 
    const callbacks = {
       handlePageClick: useCallback(pageNumber => {
-         store.actions.catalog.clickToPageNum(pageNumber);
+         store.actions.catalog.load(pageNumber);
       }, [store])
    }
 
@@ -26,7 +26,7 @@ const Pagination = () => {
          {select.currentPage > 2 && (
             <>
                <PaginationBtn setCurrentPage={callbacks.handlePageClick}>
-                  1
+                  {1}
                </PaginationBtn>
                <PaginationDots />
             </>
