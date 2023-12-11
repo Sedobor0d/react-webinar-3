@@ -6,7 +6,7 @@ export const getProducts = async (skip) => {
       const data = await response.json();
       return data.result
    } catch (error) {
-      console.log('getAllProducts', error)
+      console.log('getProducts', error)
       return []
    }
 }

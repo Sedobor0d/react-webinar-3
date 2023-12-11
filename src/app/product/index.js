@@ -5,6 +5,10 @@ import useSelector from '../../store/use-selector';
 import ItemInfo from '../../components/item-info';
 import PageLayout from '../../components/page-layout';
 import Loading from '../../components/loading';
+import NavBar from '../../components/nav-bar';
+import Head from '../../components/head';
+import BasketTool from '../../components/basket-tool';
+import Navigation from '../../components/navigation';
 
 const Product = () => {
 
@@ -18,12 +22,7 @@ const Product = () => {
          amount: state.basket.amount,
          sum: state.basket.sum,
 
-         title: state.product.title,
-         description: state.product.description,
-         madeInTitle: state.product.madeInTitle,
-         categoryTitle: state.product.categoryTitle,
-         edition: state.product.edition,
-         price: state.product.price
+         product: state.product
       })
    })
 
@@ -57,19 +56,40 @@ const Product = () => {
    }
 
    return (
-      <PageLayout>
+      <>
          {!isLoading ? (
-            <ItemInfo
-               _id={_id}
-               select={select}
-               onAdd={callbacks.addToBasket}
-               onOpen={callbacks.openModalBasket}
-               setIsLoading={setIsLoading}
-            />
+            <PageLayout head={
+               <>
+                  <Head title={select.product.title} />
+                  <NavBar>
+                     <Navigation />
+                     <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
+                        sum={select.sum} />
+                  </NavBar>
+               </>
+            }>
+               <ItemInfo
+                  _id={_id}
+                  product={select.product}
+                  onAdd={callbacks.addToBasket}
+                  setIsLoading={setIsLoading}
+               />
+            </PageLayout>
          ) : (
-            <Loading />
+            <PageLayout head={
+               <>
+                  <Head title={select.product.title} />
+                  <NavBar>
+                     <Navigation />
+                     <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
+                        sum={select.sum} />
+                  </NavBar>
+               </>
+            }>
+               <Loading />
+            </PageLayout>
          )}
-      </PageLayout>
+      </>
    );
 };
 

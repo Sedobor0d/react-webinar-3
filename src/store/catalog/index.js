@@ -1,5 +1,5 @@
 import { getProducts } from "../../services";
-import { getNumArrPages } from "../../utils";
+
 import StoreModule from "../module";
 
 class Catalog extends StoreModule {
@@ -12,8 +12,7 @@ class Catalog extends StoreModule {
     return {
       list: [],
       currentPage: 0,
-      totalPages: 0,
-      numArrPages: []
+      totalPages: 0
     }
   }
 
@@ -25,10 +24,9 @@ class Catalog extends StoreModule {
 
     this.setState({
       ...this.getState(),
-      list: data.items,
+      list: [...data.items],
       currentPage: pageNum,
-      totalPages: totalPages,
-      numArrPages: getNumArrPages(pageNum, totalPages)
+      totalPages: totalPages
     }, 'Загружены товары из АПИ');
   }
 

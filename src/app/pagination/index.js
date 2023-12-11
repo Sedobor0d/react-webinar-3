@@ -4,6 +4,7 @@ import PaginationDots from '../../components/pagination-dots/index.js';
 import useStore from '../../store/use-store.js';
 import useSelector from '../../store/use-selector.js';
 import PaginationLayout from '../../components/pagination-layout.js/index.js';
+import { getNumArrPages } from "../../utils.js";
 
 const Pagination = () => {
 
@@ -11,9 +12,10 @@ const Pagination = () => {
 
    const select = useSelector(state => ({
       currentPage: state.catalog.currentPage,
-      totalPages: state.catalog.totalPages,
-      numArrPages: state.catalog.numArrPages
+      totalPages: state.catalog.totalPages
    }));
+
+   const numArrPages = getNumArrPages(select.currentPage, select.totalPages)
 
    const callbacks = {
       handlePageClick: useCallback(pageNumber => {
@@ -31,7 +33,7 @@ const Pagination = () => {
                <PaginationDots />
             </>
          )}
-         {select.numArrPages.map((pageNumber) => (
+         {numArrPages.map((pageNumber) => (
             <PaginationBtn
                key={pageNumber}
                setCurrentPage={callbacks.handlePageClick}
