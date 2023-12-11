@@ -19,7 +19,8 @@ class Catalog extends StoreModule {
   async load(pageNum = 1) {
     if (pageNum === this.getState().currentPage) return;
 
-    const data = await getProducts(pageNum - 1);
+    const data = await getProducts((pageNum - 1) * 10);
+
     const totalPages = Math.ceil(data.count / 10);
 
     this.setState({
@@ -31,12 +32,10 @@ class Catalog extends StoreModule {
   }
 
   async setOneProduct(product) {
-    if (this.getState().numArrPages.length === 0) {
-      this.setState({
-        ...this.getState(),
-        list: [product],
-      }, 'Добавлен товар при перезагрузки');
-    }
+    this.setState({
+      ...this.getState(),
+      list: [...this.getState().list, product],
+    }, 'Добавлен товар при перезагрузки');
   }
 }
 export default Catalog;

@@ -4,6 +4,7 @@
    text-align: center;
    font-size: 16px;
    cursor: pointer;
+   color: #000;
 }
 
 .PaginationBtn:hover {
@@ -11,6 +12,7 @@
 }
 
 .PaginationBtn-active {
+   pointer-events: none;
    background-color: #0087E9;
    color: #fff;
 }
