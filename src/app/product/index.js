@@ -56,7 +56,7 @@ const Product = () => {
 
    return (
       <>
-         {!isLoading ? (
+         {!select.product.isLoading ? (
             <PageLayout head={
                <>
                   <Head title={select.product.title} />

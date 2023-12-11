@@ -10,21 +10,24 @@ import Pagination from '../pagination';
 import Navigation from "../../components/navigation";
 import NavBar from '../../components/nav-bar';
 import { useParams } from 'react-router-dom';
+import Loading from '../../components/loading';
 
 function Main() {
   const store = useStore();
   const _id = useParams().id
 
-
-  useEffect(() => {
-    store.actions.catalog.load(parseInt(_id || 1));
-  }, [store]);
-
   const select = useSelector(state => ({
+    isLoading: state.catalog.isLoading,
     list: state.catalog.list,
     amount: state.basket.amount,
-    sum: state.basket.sum
+    sum: state.basket.sum,
   }));
+
+  useEffect(() => {
+    store.actions.catalog.load(parseInt(_id || 1));;
+  }, [store]);
+
+  console.log('isLoading: ', select.isLoading);
 
   const callbacks = {
     // Добавление в корзину
@@ -47,8 +50,14 @@ function Main() {
         <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
           sum={select.sum} />
       </NavBar>
-      <List list={select.list} renderItem={renders.item} />
-      <Pagination />
+      {!select.isLoading ? (
+        <>
+          <List list={select.list} renderItem={renders.item} />
+          <Pagination />
+        </>
+      ) : (
+        <Loading />
+      )}
     </PageLayout>
   );
 }

@@ -12,22 +12,28 @@ class Catalog extends StoreModule {
     return {
       list: [],
       currentPage: 0,
-      totalPages: 0
+      totalPages: 0,
+      isLoading: false,
     }
   }
 
   async load(pageNum = 1) {
     if (pageNum === this.getState().currentPage) return;
 
-    const data = await getProducts((pageNum - 1) * 10);
+    this.setState({
+      ...this.getState(),
+      isLoading: true
+    }, 'isLoading')
 
+    const data = await getProducts((pageNum - 1) * 10);
     const totalPages = Math.ceil(data.count / 10);
 
     this.setState({
       ...this.getState(),
       list: [...data.items],
       currentPage: pageNum,
-      totalPages: totalPages
+      totalPages: totalPages,
+      isLoading: false,
     }, 'Загружены товары из АПИ');
   }
 
