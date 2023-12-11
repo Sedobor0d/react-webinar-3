@@ -31,7 +31,6 @@ const Product = () => {
    }, [_id])
 
    useEffect(() => {
-      store.actions.modals.close()
       store.actions.product.setProduct(_id)
          .then((data) => {
             const product = {

@@ -32,10 +32,12 @@ class Catalog extends StoreModule {
   }
 
   async setOneProduct(product) {
-    this.setState({
-      ...this.getState(),
-      list: [...this.getState().list, product],
-    }, 'Добавлен товар при перезагрузки');
+    if (this.getState().list.length === 0) {
+      this.setState({
+        ...this.getState(),
+        list: [...this.getState().list, product],
+      }, 'Добавлен товар при перезагрузки');
+    }
   }
 }
 export default Catalog;

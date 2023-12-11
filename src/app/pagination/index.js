@@ -27,7 +27,7 @@ const Pagination = () => {
       <PaginationLayout>
          {select.currentPage > 2 && (
             <>
-               <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page`}>
+               <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page/1`}>
                   {1}
                </PaginationBtn>
                <PaginationDots />
@@ -38,7 +38,7 @@ const Pagination = () => {
                key={pageNumber}
                setCurrentPage={callbacks.handlePageClick}
                isActive={pageNumber === select.currentPage}
-               to={`/page`}
+               to={`/page/${pageNumber}`}
             >
                {pageNumber}
             </PaginationBtn>
@@ -47,7 +47,7 @@ const Pagination = () => {
          {select.currentPage < select.totalPages - 1 && (
             <>
                <PaginationDots />
-               <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page`}>
+               <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page/${select.totalPages}`}>
                   {select.totalPages}
                </PaginationBtn>
             </>

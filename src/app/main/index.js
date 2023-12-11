@@ -9,12 +9,15 @@ import useSelector from "../../store/use-selector";
 import Pagination from '../pagination';
 import Navigation from "../../components/navigation";
 import NavBar from '../../components/nav-bar';
+import { useParams } from 'react-router-dom';
 
 function Main() {
   const store = useStore();
+  const _id = useParams().id
+
 
   useEffect(() => {
-    store.actions.catalog.load();
+    store.actions.catalog.load(parseInt(_id || 1));
   }, [store]);
 
   const select = useSelector(state => ({
@@ -32,7 +35,7 @@ function Main() {
 
   const renders = {
     item: useCallback((item) => {
-      return <Item item={item} onAdd={callbacks.addToBasket} to={`/product`} />
+      return <Item item={item} onAdd={callbacks.addToBasket} to={`/product/${item._id}`} />
     }, [callbacks.addToBasket]),
   };
 

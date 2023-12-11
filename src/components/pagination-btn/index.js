@@ -10,7 +10,7 @@ const PaginationBtn = ({ children, isActive = false, setCurrentPage, to }) => {
    }
 
    return (
-      <Link to={`${to}/${children}`}
+      <Link to={to}
          className={`PaginationBtn ${isActive ? "PaginationBtn-active" : ""}`}
          onClick={callbacks.handlePageClick}
       >
