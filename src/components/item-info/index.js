@@ -8,10 +8,6 @@ const ItemInfo = (props) => {
       onAdd: () => props.onAdd(props._id)
    }
 
-   useEffect(() => {
-      props.setIsLoading(false)
-   }, [])
-
    return (
       <div className='ItemInfo'>
          <div className="ItemInfo-content">

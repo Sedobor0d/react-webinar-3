@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8010/api/v1/articles'
+const baseUrl = '/api/v1/articles'
 
 export const getProducts = async (skip) => {
    try {

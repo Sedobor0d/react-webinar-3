@@ -12,8 +12,6 @@ import Navigation from '../../components/navigation';
 
 const Product = () => {
 
-   const [isLoading, setIsLoading] = useState(false)
-
    const store = useStore();
    const _id = useParams().id
 
@@ -27,10 +25,6 @@ const Product = () => {
    })
 
    useEffect(() => {
-      setIsLoading(true)
-   }, [_id])
-
-   useEffect(() => {
       store.actions.product.setProduct(_id)
          .then((data) => {
             const product = {
@@ -39,7 +33,6 @@ const Product = () => {
                price: data.price
             }
             store.actions.catalog.setOneProduct(product);
-            setIsLoading(false)
          })
          .catch((error) => {
             console.log('Product: ', error)
@@ -61,7 +54,7 @@ const Product = () => {
                <>
                   <Head title={select.product.title} />
                   <NavBar>
-                     <Navigation />
+                     <Navigation setToPage={callbacks.goToPage} />
                      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
                         sum={select.sum} />
                   </NavBar>
@@ -71,7 +64,6 @@ const Product = () => {
                   _id={_id}
                   product={select.product}
                   onAdd={callbacks.addToBasket}
-                  setIsLoading={setIsLoading}
                />
             </PageLayout>
          ) : (
@@ -79,7 +71,7 @@ const Product = () => {
                <>
                   <Head title={select.product.title} />
                   <NavBar>
-                     <Navigation />
+                     <Navigation goToPage={callbacks.goToPage} />
                      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
                         sum={select.sum} />
                   </NavBar>

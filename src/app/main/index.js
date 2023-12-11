@@ -27,8 +27,6 @@ function Main() {
     store.actions.catalog.load(parseInt(_id || 1));;
   }, [store]);
 
-  console.log('isLoading: ', select.isLoading);
-
   const callbacks = {
     // Добавление в корзину
     addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),

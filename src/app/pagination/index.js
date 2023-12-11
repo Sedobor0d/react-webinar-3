@@ -30,7 +30,7 @@ const Pagination = () => {
                <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page/1`}>
                   {1}
                </PaginationBtn>
-               <PaginationDots />
+               {select.currentPage !== 3 && <PaginationDots />}
             </>
          )}
          {numArrPages.map((pageNumber) => (
@@ -46,7 +46,7 @@ const Pagination = () => {
 
          {select.currentPage < select.totalPages - 1 && (
             <>
-               <PaginationDots />
+               {select.currentPage !== select.totalPages - 2 && <PaginationDots />}
                <PaginationBtn setCurrentPage={callbacks.handlePageClick} to={`/page/${select.totalPages}`}>
                   {select.totalPages}
                </PaginationBtn>
