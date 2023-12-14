@@ -33,3 +33,24 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+export function sortCategory(categories) {
+  const sortedCategory = [];
+
+  const getPrefix = (parentId, child = [], count = 1) => {
+    categories.forEach((category) => {
+      if (parentId === category.parent?._id && !child.find((item1) => category._id === item1._id)) {
+        child.push({ ...category, title: `${"- ".repeat(count)}${category.title}` });
+        getPrefix(category._id, child, count + 1);
+      }
+    });
+  }
+
+  categories.forEach((category) => {
+    if (category.parent === null) {
+      sortedCategory.push(category);
+      getPrefix(category._id, sortedCategory);
+    }
+  });
+  return sortedCategory
+}
