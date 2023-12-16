@@ -1,4 +1,7 @@
 {
+  "locale.ru":"Russian",
+  "locale.en":"English",
+
   "title": "Shop",
   "menu.main": "Main",
   "basket.title": "Cart",
@@ -10,9 +13,31 @@
   "basket.unit": "pcs",
   "basket.delete": "Delete",
   "article.add": "Add",
+
+  "filter.order": "Order",
+  "filter.by-name": "By name",
+  "filter.begin-expensive": "Begin expensive",
+  "filter.old": "Old",
+  "filter.search": "Search",
   "filter.reset": "Reset",
+
   "basket.articles": {
     "one": "article",
     "other": "articles"
-  }
+  },
+  "auth-title.login": "Login",
+  "auth-title.logout": "Logout",
+  "auth-btn.login": "Login",
+  "auth-form.username": "Username",
+  "auth-form.password": "Password",
+
+  "user-profile.title":"Profile",
+  "user-profile.name":"Name",
+  "user-profile.telephone":"Telephone",
+  "user-profile.email":"email",
+
+  "article-card.country": "Country of origin",
+  "article-card.category": "Category",
+  "article-card.year-release": "Year of release",
+  "article-card.price": "Price"
 }

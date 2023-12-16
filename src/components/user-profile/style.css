@@ -1,0 +1,19 @@
+.UserProfile {
+   padding: 40px 20px 0;
+}
+
+.UserProfile-container {
+   font-size: 18px;
+}
+
+.UserProfile h2 {
+   margin-bottom: 30px;
+}
+
+.UserProfile-container p {
+   margin-bottom: 20px;
+}
+
+.UserProfile-container span {
+   font-weight: 700;
+}

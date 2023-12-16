@@ -1,9 +1,12 @@
-import {useCallback, useContext, useEffect, useState} from 'react';
-import {Routes, Route} from 'react-router-dom';
+import { useLayoutEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import useSelector from "../hooks/use-selector";
 import Main from "./main";
 import Basket from "./basket";
 import Article from "./article";
+import FormAuth from './form-auth';
+import Profile from './profile';
+import useStore from '../hooks/use-store';
 
 /**
  * Приложение
@@ -11,16 +14,37 @@ import Article from "./article";
  */
 function App() {
 
-  const activeModal = useSelector(state => state.modals.name);
+  const store = useStore();
+
+  const select = useSelector(state => ({
+    activeModal: state.modals.name,
+    username: state.user.profile.name,
+    token: state.user.token,
+  }));
+
+  useLayoutEffect(() => {
+    store.actions.user.load()
+  }, [select.token])
 
   return (
     <>
       <Routes>
-        <Route path={''} element={<Main/>}/>
-        <Route path={'/articles/:id'} element={<Article/>}/>
-      </Routes>
+        <Route path="/" element={<Main />} />
+        <Route path={'/articles/:id'} element={<Article />} />
 
-      {activeModal === 'basket' && <Basket/>}
+        {select.token ? (
+          <>
+            <Route path={'/profile/:id'} element={<Profile />} />
+            <Route path={'/login'} element={<Navigate to={`/profile/${select.username}`} />} />
+          </>
+        ) : (
+          <>
+            <Route path={'/profile/:id'} element={<Navigate to={'/login'} />} />
+            <Route path={'/login'} element={<FormAuth />} />
+          </>
+        )}
+      </Routes>
+      {select.activeModal === 'basket' && <Basket />}
     </>
   );
 }

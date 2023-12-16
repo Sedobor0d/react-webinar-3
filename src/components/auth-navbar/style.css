@@ -1,0 +1,16 @@
+.AuthNavbar {
+   height: 40px;
+   display: flex;
+   justify-content: end;
+   align-items: center;
+   font-size: 13px;
+}
+
+.AuthNavbar-btn {
+   margin: 10px 20px;
+   padding: 1px 10px;
+}
+
+.AuthNavbar-username {
+   color: #0087E9;
+}

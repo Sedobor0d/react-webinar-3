@@ -9,13 +9,13 @@ import Select from "../../components/select";
  */
 function LocaleSelect() {
 
-  const { lang, setLang } = useTranslate();
+  const { t, lang, setLang } = useTranslate();
 
   const options = {
     lang: useMemo(() => ([
-      { _id: 'ru', title: 'Русский' },
-      { _id: 'en', title: 'English' },
-    ]), [])
+      { _id: 'ru', title: t('locale.ru') },
+      { _id: 'en', title: t('locale.en') },
+    ]), [lang])
   };
 
   return (

@@ -1,0 +1,23 @@
+.Form {
+   padding: 20px;
+}
+
+.Form-head {
+   margin-bottom: 20px;
+}
+
+.Form-field {
+   display: flex;
+   flex-direction: column;
+   width: 200px;
+   margin-bottom: 20px;
+   font-size: 16px;
+}
+
+.Form-btn {
+   width: 55px;
+}
+
+.Form-error {
+   margin-bottom: 20px;
+}

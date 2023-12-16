@@ -1,4 +1,7 @@
 {
+  "locale.ru":"Русский",
+  "locale.en":"Английский",
+
   "title": "Магазин",
   "menu.main": "Главная",
   "basket.title": "Корзина",
@@ -10,11 +13,33 @@
   "basket.unit": "шт",
   "basket.delete": "Удалить",
   "article.add": "Добавить",
+
+  "filter.order": "По порядку",
+  "filter.by-name": "По именованию",
+  "filter.begin-expensive": "Сначала дорогие",
+  "filter.old": "Древние",
+  "filter.search": "Поиск",
   "filter.reset": "Сбросить",
+
   "basket.articles": {
     "one": "товар",
     "few": "товара",
     "many": "товаров",
     "other": "товара"
-  }
+  },
+  "auth-title.login": "Вход",
+  "auth-title.logout": "Выход",
+  "auth-btn.login": "Войти",
+  "auth-form.username": "Логин",
+  "auth-form.password": "Пароль",
+
+  "user-profile.title":"Профиль",
+  "user-profile.name":"Имя",
+  "user-profile.telephone":"Телефон",
+  "user-profile.email":"email",
+
+  "article-card.country": "Страна производитель",
+  "article-card.category": "Категория",
+  "article-card.year-release": "Год выпуска",
+  "article-card.price": "Цена"
 }
