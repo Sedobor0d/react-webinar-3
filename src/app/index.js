@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import useSelector from "../hooks/use-selector";
 import Main from "./main";
@@ -7,6 +7,7 @@ import Article from "./article";
 import FormAuth from './form-auth';
 import Profile from './profile';
 import useStore from '../hooks/use-store';
+import useInit from '../hooks/use-init';
 
 /**
  * Приложение
@@ -16,23 +17,27 @@ function App() {
 
   const store = useStore();
 
+  useInit(() => {
+    store.actions.user.init()
+  }, [store])
+
   const select = useSelector(state => ({
     activeModal: state.modals.name,
     username: state.profile.profile.name,
     token: state.user.token,
   }));
 
-  useLayoutEffect(() => {
-    store.actions.profile.load()
+  useEffect(() => {
+    store.actions.profile.setUser()
   }, [select.token])
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/*" element={<Main />} />
         <Route path={'/articles/:id'} element={<Article />} />
 
-        {select.token ? (
+        {select.username ? (
           <>
             <Route path={'/profile/:id'} element={<Profile />} />
             <Route path={'/login'} element={<Navigate to={`/profile/${select.username}`} />} />

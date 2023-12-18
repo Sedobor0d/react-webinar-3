@@ -13,7 +13,6 @@ class CatalogState extends StoreModule {
   initState() {
     return {
       list: [],
-      listCategory: [],
       params: {
         page: 1,
         limit: 10,
@@ -65,13 +64,9 @@ class CatalogState extends StoreModule {
 
     const params = { ...this.getState().params, ...newParams };
 
-    const responseCategory = await fetch('api/v1/categories?fields=_id,title,parent(_id)&limit=*')
-    const jsonCategory = await responseCategory.json();
-
     // Установка новых параметров и признака загрузки
     this.setState({
       ...this.getState(),
-      listCategory: sortCategory([{ _id: 'all', title: "Все", parent: null }, ...jsonCategory.result.items]),
       params,
       waiting: true
     }, 'Установлены параметры каталога');

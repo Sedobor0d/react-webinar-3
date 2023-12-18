@@ -1,39 +1,39 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import './style.css';
 import Input from '../input';
 import ErrorMessage from '../error-message';
 import PropTypes from 'prop-types'
 
 const Form = (props) => {
+   const [log, setLog] = useState('')
+   const [pass, setPass] = useState('')
+
    const callbacks = {
       onSubmit: (e) => {
          e.preventDefault();
-         const login = props.select.fieldLog.replace(/\s/g, "");
-         const password = props.select.fieldPass.replace(/\s/g, "");
+         const login = log.replace(/\s/g, "");
+         const password = pass.replace(/\s/g, "");
 
-         props.callbacks.formSubmit({ login: login || undefined, password: password || undefined })
-      },
-      changeLog: (event) => props.callbacks.onChangeLog(event.target.value),
-      changePass: (event) => props.callbacks.onChangePass(event.target.value),
+         props.formSubmit({ login: login || undefined, password: password || undefined })
+      }
    }
 
    return (
       <form className='Form' onSubmit={callbacks.onSubmit}>
-         <h2 className='Form-head'>{props.head}</h2>
+         <h2 className='Form-head'>{props.title}</h2>
 
          <div className='Form-field'>
             <label>{props.t('auth-form.username')}</label>
-            <input value={props.select.fieldLog} type='text' onChange={callbacks.changeLog} />
+            <Input value={log} type='text' onChange={setLog} />
          </div>
 
          <div className='Form-field'>
             <label>{props.t('auth-form.password')}</label>
-            <input value={props.select.fieldPass} type='password' onChange={callbacks.changePass} />
+            <Input value={pass} type='password' onChange={setPass} />
          </div>
 
          <div className='Form-error'>
-            {props.select.serverError.map((item) => (
-
+            {props.serverError.map((item) => (
                <ErrorMessage key={item.path}>
                   {item.message}
                </ErrorMessage>
@@ -51,16 +51,8 @@ const Form = (props) => {
 };
 
 Form.propTypes = {
-   select: PropTypes.shape({
-      serverError: PropTypes.arrayOf(PropTypes.object),
-      fieldLog: PropTypes.string,
-      fieldPass: PropTypes.string,
-   }).isRequired,
-   callbacks: PropTypes.shape({
-      formSubmit: PropTypes.func,
-      onChangeLog: PropTypes.func,
-      onChangePass: PropTypes.func,
-   }).isRequired,
+   serverError: PropTypes.arrayOf(PropTypes.object).isRequired,
+   formSubmit: PropTypes.func.isRequired,
    btn: PropTypes.string,
    title: PropTypes.string,
    t: PropTypes.func,

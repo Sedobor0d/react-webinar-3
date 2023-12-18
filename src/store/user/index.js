@@ -17,6 +17,30 @@ class User extends StoreModule {
       }, `Обработка ошибки на сервере`)
    }
 
+   async init() {
+      const token = localStorage.getItem('token');
+      if (token) {
+         fetch("/api/v1/users/self?fields=*", {
+            method: "GET",
+            headers: {
+               "X-Token": token,
+               "Content-Type": "application/json",
+            },
+         })
+            .then((data) => data.json())
+            .then((data) => {
+               this.setState({
+                  ...this.initState(),
+                  token: token,
+                  user: data.result,
+               }, `init`)
+            }).catch((e) => {
+               console.log('error: ', e);
+            })
+      }
+
+   }
+
    logOut() {
       const token = localStorage.getItem('token');
       if (token) {
@@ -46,6 +70,7 @@ class User extends StoreModule {
       })
          .then((res) => res.json())
          .then((data) => {
+            console.log('logIn: ', data);
             if (data.error) {
                this.setServerError(data.error.data.issues)
             } else {

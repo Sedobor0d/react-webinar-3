@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useSelector from '../../hooks/use-selector';
 import AuthNavbar from '../../components/auth-navbar';
@@ -13,18 +13,19 @@ const AuthHeader = () => {
 
    const select = useSelector(state => ({
       username: state.profile.profile.name,
-      token: state.user.token,
    }));
 
    const callbacks = {
       onLogIn: useCallback(() => navigate('/login'), [store]),
-      onLogOut: useCallback(() => store.actions.user.logOut(), [store]),
+      onLogOut: useCallback(() => {
+         store.actions.user.logOut()
+         store.actions.profile.setProfle()
+      }, [store]),
    }
 
    return (
       <AuthNavbar
          username={select.username}
-         token={select.token}
          userPage={`/profile/${select.username}`}
          onLogIn={callbacks.onLogIn}
          onLogOut={callbacks.onLogOut}

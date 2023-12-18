@@ -9,11 +9,24 @@ class Profile extends StoreModule {
             phone: '',
             email: '',
          },
+         isLoading: false
       };
    }
 
-   async load() {
+   setProfle(data = {}) {
+      this.setState({
+         ...this.initState(),
+         profile: data,
+      }, `setProfle`)
+   }
+
+   async setUser() {
+      this.setState({
+         ...this.getState(),
+         isLoading: true,
+      }, `isLoading`)
       const token = localStorage.getItem('token');
+
       if (token) {
          fetch("/api/v1/users/self?fields=*", {
             method: "GET",
@@ -32,10 +45,20 @@ class Profile extends StoreModule {
                this.setState({
                   ...this.initState(),
                   profile: profile,
-               }, `load`)
+                  isLoading: false,
+               }, `getUser`)
             }).catch((e) => {
                console.log('error: ', e);
+               this.setState({
+                  ...this.getState(),
+                  isLoading: false,
+               }, `getUser`)
             })
+      } else {
+         this.setState({
+            ...this.getState(),
+            isLoading: false,
+         }, `isLoading`)
       }
    }
 
