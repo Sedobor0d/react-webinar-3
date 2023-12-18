@@ -13,8 +13,8 @@ const Form = (props) => {
 
          props.callbacks.formSubmit({ login: login || undefined, password: password || undefined })
       },
-      changeLog: (text) => props.callbacks.onChangeLog(text),
-      changePass: (text) => props.callbacks.onChangePass(text),
+      changeLog: (event) => props.callbacks.onChangeLog(event.target.value),
+      changePass: (event) => props.callbacks.onChangePass(event.target.value),
    }
 
    return (
@@ -23,12 +23,12 @@ const Form = (props) => {
 
          <div className='Form-field'>
             <label>{props.t('auth-form.username')}</label>
-            <Input value={props.select.fieldLog} type='text' onChange={callbacks.changeLog} />
+            <input value={props.select.fieldLog} type='text' onChange={callbacks.changeLog} />
          </div>
 
          <div className='Form-field'>
             <label>{props.t('auth-form.password')}</label>
-            <Input value={props.select.fieldPass} type='password' onChange={callbacks.changePass} />
+            <input value={props.select.fieldPass} type='password' onChange={callbacks.changePass} />
          </div>
 
          <div className='Form-error'>

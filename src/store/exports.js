@@ -5,3 +5,4 @@ export { default as article } from './article';
 export { default as locale } from './locale';
 export { default as user } from './user';
 export { default as inputauth } from './input-auth';
+export { default as profile } from './profile';

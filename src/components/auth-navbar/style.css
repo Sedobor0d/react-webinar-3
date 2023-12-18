@@ -4,6 +4,7 @@
    justify-content: end;
    align-items: center;
    font-size: 13px;
+   border-bottom: 1px solid #CCC;
 }
 
 .AuthNavbar-btn {

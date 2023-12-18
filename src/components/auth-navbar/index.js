@@ -3,7 +3,7 @@ import './style.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const AuthNavbar = ({ username, userPage, onLogIn, onLogOut, t }) => {
+const AuthNavbar = ({ username, token, userPage, onLogIn, onLogOut, t }) => {
 
    const callbacks = {
       LogIn: () => onLogIn(),
@@ -12,7 +12,7 @@ const AuthNavbar = ({ username, userPage, onLogIn, onLogOut, t }) => {
 
    return (
       <div className='AuthNavbar'>
-         {username ? (
+         {token ? (
             <>
                <Link to={userPage} className='AuthNavbar-username'>{username}</Link>
                <button className='AuthNavbar-btn' onClick={callbacks.onLogOut}>{t('auth-title.logout')}</button>

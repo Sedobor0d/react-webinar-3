@@ -12,7 +12,8 @@ const AuthHeader = () => {
    const { t } = useTranslate();
 
    const select = useSelector(state => ({
-      username: state.user.profile.name,
+      username: state.profile.profile.name,
+      token: state.user.token,
    }));
 
    const callbacks = {
@@ -23,6 +24,7 @@ const AuthHeader = () => {
    return (
       <AuthNavbar
          username={select.username}
+         token={select.token}
          userPage={`/profile/${select.username}`}
          onLogIn={callbacks.onLogIn}
          onLogOut={callbacks.onLogOut}

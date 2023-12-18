@@ -18,12 +18,12 @@ function App() {
 
   const select = useSelector(state => ({
     activeModal: state.modals.name,
-    username: state.user.profile.name,
+    username: state.profile.profile.name,
     token: state.user.token,
   }));
 
   useLayoutEffect(() => {
-    store.actions.user.load()
+    store.actions.profile.load()
   }, [select.token])
 
   return (

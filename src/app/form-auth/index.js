@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useLayoutEffect } from 'react';
 import Form from '../../components/form';
 import Head from '../../components/head';
 import LocaleSelect from '../../containers/locale-select';
@@ -13,6 +13,10 @@ const FormAuth = () => {
    const { t } = useTranslate();
 
    const store = useStore();
+
+   useLayoutEffect(() => {
+      store.actions.user.setServerError()
+   }, [])
 
    const select = useSelector(state => ({
       serverError: state.user.serverError,

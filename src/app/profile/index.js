@@ -13,9 +13,9 @@ const Profile = () => {
    const { t } = useTranslate();
 
    const select = useSelector(state => ({
-      name: state.user.profile.name,
-      phone: state.user.profile.phone,
-      email: state.user.profile.email,
+      name: state.profile.profile.name,
+      phone: state.profile.profile.phone,
+      email: state.profile.profile.email,
    }));
 
    return (
