@@ -1,0 +1,29 @@
+.CardComment {
+   padding-bottom: 30px;
+   font-size: 12px;
+}
+
+.CardComment-head {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.CardComment-username {
+   font-weight: 700;
+   margin-right: 10px;
+}
+
+.CardComment-date {
+   color: #666666;
+}
+
+.CardComment-comment {
+   font-size: 14px;
+   margin-bottom: 10px;
+}
+
+.CardComment-btn {
+   color: #0087E9;
+   cursor: pointer;
+}

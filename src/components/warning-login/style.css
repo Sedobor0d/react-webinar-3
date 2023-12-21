@@ -1,0 +1,9 @@
+.WarningLogin-link {
+   color: #0087E9;
+}
+
+.WarningLogin-cancel {
+   color: #666666;
+   text-decoration: underline;
+   cursor: pointer;
+}

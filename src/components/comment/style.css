@@ -1,0 +1,34 @@
+.Comment {
+   display: flex;
+   flex-direction: column;
+   padding-bottom: 30px;
+}
+
+.Comment-head {
+   font-size: 12px;
+   font-weight: 700;
+   margin-bottom: 10px;
+}
+
+.Comment-textarea {
+   font-family: Arial;
+   font-size: 14px;
+   height: 76px;
+   resize: none;
+   margin-bottom: 10px;
+   border: 1px solid #666666;
+   box-shadow: 0px 1px 4px 0px rgba(102, 102, 102, 0.10) inset;
+}
+
+.Comment-btn {
+   display: flex;
+}
+
+.Comment-btnSend {
+   width: 90px;
+   margin-right: 10px;
+}
+
+.Comment-btnClose {
+   width: 70px;
+}
