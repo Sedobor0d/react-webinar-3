@@ -1,8 +1,5 @@
 export default {
-   open: (name) => {
-      return { type: 'comment/open', payload: { name } }
+   open: (name, parent) => {
+      return { type: 'comment/open', payload: { name, parent } }
    },
-   close: () => {
-      return { type: 'comment/close' }
-   }
 }

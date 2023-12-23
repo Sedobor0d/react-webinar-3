@@ -1,30 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Comment from '../comment';
 import WarningLogin from '../warning-login';
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 
-const SelectDisplayComment = ({ exists, activeModal, closeComment, toLogin }) => {
-
-   const [isOpen, setIsOpen] = useState(false)
-
-   const callbacks = {
-      openComment: () => {
-         setIsOpen(true)
-      },
-      closeComment: () => {
-         setIsOpen(true)
-      },
-   };
+const SelectDisplayComment = ({ exists, ...props }) => {
 
    return (
       <>
          {exists ? (
-            <Comment activeModal={activeModal} closeComment={closeComment} />
+            <Comment
+               activeModal={props.activeModal}
+               closeComment={props.closeComment}
+               parentModal={props.parentModal}
+               sendComment={props.sendComment}
+            />
          ) : (
-            <WarningLogin activeModal={activeModal} closeComment={closeComment} toLogin={toLogin} />
+            <WarningLogin
+               activeModal={props.activeModal}
+               closeComment={props.closeComment}
+               toLogin={props.toLogin}
+            />
          )}
       </>
    );
+};
+
+SelectDisplayComment.propTypes = {
+   exists: PropTypes.bool.isRequired,
+   props: PropTypes.object
 };
 
 export default memo(SelectDisplayComment);

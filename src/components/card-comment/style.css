@@ -1,6 +1,10 @@
 .CardComment {
-   padding-bottom: 30px;
    font-size: 12px;
+}
+
+.CardComment--child {
+   padding-left: 30px;
+   margin-top: 30px;
 }
 
 .CardComment-head {

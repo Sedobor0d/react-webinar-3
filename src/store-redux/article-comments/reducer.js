@@ -1,5 +1,5 @@
 export const initialState = {
-   data: [],
+   comments: [],
    waiting: false,
    count: 0
 }
@@ -9,9 +9,7 @@ function reducer(state = initialState, action) {
       case "comment/start":
          return { ...state, waiting: true };
       case "comment/load":
-         return { ...state, data: action.payload.data, count: action.payload.count, waiting: false };
-      case "comment/create":
-         return { ...state, waiting: false };
+         return { ...state, comments: action.payload.comments, count: action.payload.count, waiting: false };
       case "comment/error":
          return { ...state, waiting: false };
       default:

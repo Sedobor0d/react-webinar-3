@@ -4,6 +4,10 @@
    padding-bottom: 30px;
 }
 
+.Comment--response {
+   padding-left: 30px;
+}
+
 .Comment-head {
    font-size: 12px;
    font-weight: 700;

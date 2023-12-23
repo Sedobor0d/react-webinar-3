@@ -1,5 +1,15 @@
+.WarningLogin {
+   padding-bottom: 30px;
+   font-size: 16px;
+}
+
+.WarningLogin--response {
+   padding-left: 30px;
+}
+
 .WarningLogin-link {
    color: #0087E9;
+   cursor: pointer;
 }
 
 .WarningLogin-cancel {
