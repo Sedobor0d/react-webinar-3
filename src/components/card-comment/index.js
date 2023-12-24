@@ -30,6 +30,7 @@ const CardComment = ({ children, item, userId, openComment, parentModal, t }) =>
                   <CardComment
                      key={item._id}
                      item={item}
+                     userId={userId}
                      openComment={openComment}
                      parentModal={parentModal}
                      t={t}
