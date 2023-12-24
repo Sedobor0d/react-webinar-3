@@ -1,17 +1,17 @@
-export default function formatDate(dateTimeString) {
+export default function formatDate(dateTimeString, t) {
    const months = [
-      'января',
-      'февраля',
-      'марта',
-      'апреля',
-      'мая',
-      'июня',
-      'июля',
-      'августа',
-      'сентября',
-      'октября',
-      'ноября',
-      'декабря',
+      'comment.january',
+      'comment.february',
+      'comment.march',
+      'comment.april',
+      'comment.may',
+      'comment.june',
+      'comment.july',
+      'comment.august',
+      'comment.september',
+      'comment.october',
+      'comment.november',
+      'comment.december'
    ];
    const date = new Date(dateTimeString);
    const day = date.getDate();
@@ -20,7 +20,7 @@ export default function formatDate(dateTimeString) {
    const hours = date.getHours();
    const minutes = date.getMinutes();
 
-   const formattedDate = `${day} ${months[month]} ${year} в ${hours}:${minutes}`;
+   const formattedDate = `${day} ${t(months[month])} ${year} ${t('comment.in')} ${hours}:${minutes}`;
 
    return formattedDate;
 }

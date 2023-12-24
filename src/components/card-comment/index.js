@@ -4,10 +4,11 @@ import { memo } from 'react';
 import formatDate from '../../utils/convert-date';
 import PropTypes from 'prop-types';
 
-const CardComment = ({ children, item, openComment, parentModal }) => {
+const CardComment = ({ children, item, userId, openComment, parentModal, t }) => {
 
    const callbacks = {
       openComment: () => openComment(item._id)
+
    };
 
    const isOpen = parentModal._type === 'comment' && parentModal._id === item._id
@@ -16,13 +17,13 @@ const CardComment = ({ children, item, openComment, parentModal }) => {
       <>
          <div className={`CardComment`}>
             <div className='CardComment-head'>
-               <span className='CardComment-username'>{item.author.profile.name}</span>
-               <div className='CardComment-date'>{formatDate(item.dateCreate)}</div>
+               <span className={`CardComment-username ${userId === item.author._id && 'CardComment-username--active'}`}>{item.author.profile.name}</span>
+               <div className='CardComment-date'>{formatDate(item.dateCreate, t)}</div>
             </div>
             <div className='CardComment-comment'>
                {item.text}
             </div>
-            <span className='CardComment-btn' onClick={callbacks.openComment}>Ответить</span>
+            <span className='CardComment-btn' onClick={callbacks.openComment}>{t('comment.respond')}</span>
 
             <div className='CardComment--child'>
                {item.children.map((item) => (
@@ -31,6 +32,7 @@ const CardComment = ({ children, item, openComment, parentModal }) => {
                      item={item}
                      openComment={openComment}
                      parentModal={parentModal}
+                     t={t}
                   >
                      {children}
                   </CardComment>)

@@ -18,6 +18,10 @@
    margin-right: 10px;
 }
 
+.CardComment-username--active {
+   color: #666666;
+}
+
 .CardComment-date {
    color: #666666;
 }

@@ -10,6 +10,7 @@ import shallowEqual from 'shallowequal';
 import articleComments from '../../store-redux/article-comments/actions';
 import commentModal from '../../store-redux/comment-modal/actions';
 import listToTree from '../../utils/list-to-tree';
+import useTranslate from '../../hooks/use-translate';
 
 const Comments = () => {
 
@@ -18,6 +19,7 @@ const Comments = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const location = useLocation();
+   const { t } = useTranslate();
 
    useInit(() => {
       dispatch(articleComments.load(params.id));
@@ -34,6 +36,7 @@ const Comments = () => {
 
    const selectStore = useSelectorStore(state => ({
       exists: state.session.exists,
+      userId: state.session.user._id,
    }), [store])
 
    const callbacks = {
@@ -50,8 +53,10 @@ const Comments = () => {
       <Spinner active={select.commentsWaiting}>
          <ArticleComments
             exists={selectStore.exists}
+            userId={selectStore.userId}
             select={select}
             callbacks={callbacks}
+            t={t}
          />
       </Spinner>
    );

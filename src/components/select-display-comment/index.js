@@ -14,12 +14,14 @@ const SelectDisplayComment = ({ exists, ...props }) => {
                closeComment={props.closeComment}
                parentModal={props.parentModal}
                sendComment={props.sendComment}
+               t={props.t}
             />
          ) : (
             <WarningLogin
                activeModal={props.activeModal}
                closeComment={props.closeComment}
                toLogin={props.toLogin}
+               t={props.t}
             />
          )}
       </>

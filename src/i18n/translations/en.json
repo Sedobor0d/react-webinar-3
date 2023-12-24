@@ -20,5 +20,34 @@
   "auth.password": "Password",
   "auth.signIn": "Sign in",
   "session.signIn": "Sign In",
-  "session.signOut": "Sign Out"
+  "session.signOut": "Sign Out",
+
+  "comment.title": "Comments",
+
+  "comment.january": "january",
+  "comment.february": "february",
+  "comment.march": "march",
+  "comment.april": "april",
+  "comment.may": "may",
+  "comment.june": "june",
+  "comment.july": "july",
+  "comment.august": "august",
+  "comment.september": "september",
+  "comment.october": "october",
+  "comment.november": "november",
+  "comment.december": "december",
+
+  "comment.in": "in",
+
+  "comment.respond": "Answer",
+
+  "comment.new-response": "New response",
+  "comment.new-comment": "New comment",
+  "comment.send": "Send",
+  "comment.cancel": "Cancel",
+
+  "warning-login.warning": "Login",
+  "warning-login.to-respond": "to be able to respond",
+  "warning-login.to-comment": "to be able to comment",
+  "warning-login.cancel": "Cancel"
 }

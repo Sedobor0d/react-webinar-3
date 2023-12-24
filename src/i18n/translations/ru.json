@@ -22,5 +22,34 @@
   "auth.password": "Пароль",
   "auth.signIn": "Войти",
   "session.signIn": "Вход",
-  "session.signOut": "Выход"
+  "session.signOut": "Выход",
+
+  "comment.title": "Комментарии",
+
+  "comment.january": "января",
+  "comment.february": "февраля",
+  "comment.march": "марта",
+  "comment.april": "апреля",
+  "comment.may": "мая",
+  "comment.june": "июня",
+  "comment.july": "июля",
+  "comment.august": "августа",
+  "comment.september": "сентября",
+  "comment.october": "октября",
+  "comment.november": "ноября",
+  "comment.december": "декабря",
+
+  "comment.in": "в",
+  
+  "comment.respond": "Ответить",
+
+  "comment.new-response": "Новый ответ",
+  "comment.new-comment": "Новый комментарий",
+  "comment.send": "Отправить",
+  "comment.cancel": "Отмена",
+
+  "warning-login.warning": "Войдите",
+  "warning-login.to-respond": "чтобы иметь возможность ответить",
+  "warning-login.to-comment": "чтобы иметь возможность комментировать",
+  "warning-login.cancel": "Отмена"
 }

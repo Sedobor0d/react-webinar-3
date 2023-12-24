@@ -4,17 +4,19 @@ import CardComment from '../card-comment';
 import SelectDisplayComment from '../select-display-comment';
 import PropTypes from 'prop-types';
 
-const ArticleComments = ({ exists, select, callbacks }) => {
+const ArticleComments = ({ exists, userId, select, callbacks, t }) => {
    return (
       <div className='ArticleComments'>
-         <h2>Комментарии ({select.countСomments})</h2>
+         <h2>{t('comment.title')} ({select.countСomments})</h2>
 
          {select.comments?.map((item) => {
             return <CardComment
                key={item._id}
                item={item}
+               userId={userId}
                openComment={callbacks.openComment}
                parentModal={select.parentModal}
+               t={t}
             >
                <SelectDisplayComment
                   exists={exists}
@@ -23,6 +25,7 @@ const ArticleComments = ({ exists, select, callbacks }) => {
                   toLogin={callbacks.toLogin}
                   parentModal={select.parentModal}
                   sendComment={callbacks.sendComment}
+                  t={t}
                />
             </CardComment>
          }
@@ -35,6 +38,7 @@ const ArticleComments = ({ exists, select, callbacks }) => {
                toLogin={callbacks.toLogin}
                parentModal={select.parentModal}
                sendComment={callbacks.sendComment}
+               t={t}
             />
          }
       </div>

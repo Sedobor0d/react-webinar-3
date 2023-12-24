@@ -29,11 +29,11 @@ const Comment = (props) => {
          {props.activeModal === 'newResponse' && (
             <form onSubmit={callbacks.onSubmit}>
                <div className='Comment Comment--response'>
-                  <label htmlFor="comment" className='Comment-head'>Новый ответ</label>
+                  <label htmlFor="comment" className='Comment-head'>{props.t('comment.new-response')}</label>
                   <textarea id='comment' ref={inputRef} value={text} onChange={callbacks.onChange} className='Comment-textarea' />
                   <div className='Comment-btn'>
-                     <button type="submit" className='Comment-btnSend'>Отправить</button>
-                     <button className='Comment-btnClose' onClick={callbacks.closeComment}>Отмена</button>
+                     <button type="submit" className='Comment-btnSend'>{props.t('comment.send')}</button>
+                     <button className='Comment-btnClose' onClick={callbacks.closeComment}>{props.t('comment.cancel')}</button>
                   </div>
                </div>
             </form>
@@ -41,10 +41,10 @@ const Comment = (props) => {
          {props.activeModal === 'newComment' && (
             <form onSubmit={callbacks.onSubmit}>
                <div className='Comment'>
-                  <label htmlFor="comment" className='Comment-head'>Новый комментарий</label>
+                  <label htmlFor="comment" className='Comment-head'>{props.t('comment.new-comment')}</label>
                   <textarea id='comment' ref={inputRef} value={text} onChange={callbacks.onChange} className='Comment-textarea' />
                   <div className='Comment-btn'>
-                     <button type="submit" className='Comment-btnSend'>Отправить</button>
+                     <button type="submit" className='Comment-btnSend'>{props.t('comment.send')}</button>
                   </div>
                </div>
             </form>

@@ -7,6 +7,10 @@
    padding-left: 30px;
 }
 
+.WarningLogin:focus {
+   outline: none;
+}
+
 .WarningLogin-link {
    color: #0087E9;
    cursor: pointer;
