@@ -5,6 +5,8 @@ import SelectDisplayComment from '../select-display-comment';
 import PropTypes from 'prop-types';
 
 const ArticleComments = ({ exists, userId, select, callbacks, t }) => {
+
+   const countChild = 0
    return (
       <div className='ArticleComments'>
          <h2>{t('comment.title')} ({select.countСomments})</h2>
@@ -17,6 +19,7 @@ const ArticleComments = ({ exists, userId, select, callbacks, t }) => {
                openComment={callbacks.openComment}
                parentModal={select.parentModal}
                t={t}
+               countChild={countChild}
             >
                <SelectDisplayComment
                   exists={exists}

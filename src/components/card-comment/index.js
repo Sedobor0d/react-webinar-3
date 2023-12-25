@@ -4,11 +4,10 @@ import { memo } from 'react';
 import formatDate from '../../utils/convert-date';
 import PropTypes from 'prop-types';
 
-const CardComment = ({ children, item, userId, openComment, parentModal, t }) => {
+const CardComment = ({ children, item, userId, openComment, parentModal, t, countChild }) => {
 
    const callbacks = {
       openComment: () => openComment(item._id)
-
    };
 
    const isOpen = parentModal._type === 'comment' && parentModal._id === item._id
@@ -25,19 +24,22 @@ const CardComment = ({ children, item, userId, openComment, parentModal, t }) =>
             </div>
             <span className='CardComment-btn' onClick={callbacks.openComment}>{t('comment.respond')}</span>
 
-            <div className='CardComment--child'>
-               {item.children.map((item) => (
-                  <CardComment
-                     key={item._id}
-                     item={item}
-                     userId={userId}
-                     openComment={openComment}
-                     parentModal={parentModal}
-                     t={t}
-                  >
-                     {children}
-                  </CardComment>)
-               )}
+            <div className='CardComment-child'>
+               <div className={`${countChild <= 15 && 'CardComment-indent'}`}>
+                  {item.children.map((item) => (
+                     <CardComment
+                        key={item._id}
+                        item={item}
+                        userId={userId}
+                        openComment={openComment}
+                        parentModal={parentModal}
+                        t={t}
+                        countChild={countChild + 1}
+                     >
+                        {children}
+                     </CardComment>)
+                  )}
+               </div>
             </div>
          </div>
 

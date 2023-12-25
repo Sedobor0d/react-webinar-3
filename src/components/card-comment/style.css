@@ -2,9 +2,12 @@
    font-size: 12px;
 }
 
-.CardComment--child {
-   padding-left: 30px;
+.CardComment-child {
    margin-top: 30px;
+}
+
+.CardComment-indent {
+   padding-left: 30px;
 }
 
 .CardComment-head {
@@ -29,6 +32,7 @@
 .CardComment-comment {
    font-size: 14px;
    margin-bottom: 10px;
+   word-break: break-all;
 }
 
 .CardComment-btn {

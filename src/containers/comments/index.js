@@ -36,17 +36,14 @@ const Comments = () => {
 
    const selectStore = useSelectorStore(state => ({
       exists: state.session.exists,
-      userId: state.session.user._id,
+      userId: state.session.user._id
    }), [store])
 
    const callbacks = {
       openComment: useCallback((_id) => dispatch(commentModal.open('newResponse', { _id: _id, _type: "comment" })), [store]),
       closeComment: useCallback(() => dispatch(commentModal.open('newComment', { _id: params.id, _type: "article" })), [store]),
       toLogin: useCallback(() => navigate('/login', { state: { back: location.pathname } }), [location.pathname]),
-      sendComment: useCallback((comment) => {
-         dispatch(articleComments.create(comment))
-         dispatch(articleComments.load(params.id))
-      }, [store])
+      sendComment: useCallback((comment) => dispatch(articleComments.create(comment)), [store])
    };
 
    return (

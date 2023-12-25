@@ -1,7 +1,7 @@
 export default {
    load: (id) => {
       return async (dispatch, getState, services) => {
-         if (!getState().articleComments.waiting) dispatch({ type: 'comment/start' });
+         dispatch({ type: 'comment/start' });
          try {
             const res = await services.api.request({
                url:
@@ -15,13 +15,20 @@ export default {
    },
    create: (comment) => {
       return async (dispatch, getState, services) => {
+         if (comment.text.trim() === '') return
+
          dispatch({ type: 'comment/start' });
          try {
+            comment = {
+               ...comment,
+               text: comment.text.trim(),
+            }
             const res = await services.api.request({
-               url: `/api/v1/comments?`,
+               url: `api/v1/comments?fields=_id,text,dateCreate,author(profile(name)),parent(_id,_type)`,
                method: 'POST',
                body: JSON.stringify(comment)
             });
+            dispatch({ type: 'comment/create', payload: { comment: res.data.result } });
          } catch (e) {
             dispatch({ type: 'comment/error' });
          }
